@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background: #bdb8b5;
 }
 
 .wrapper {
@@ -13,6 +14,8 @@
     text-align: center;
     font-size: 4rem;
     font-family: sans-serif;
+    background: black;
+    color: white;
 }
 
 .form {
@@ -28,6 +31,7 @@
     width: 80%;
     border: 1px solid #ccc;
     font-family: monospace;
+    background: white;
 }
 
 .btn {
@@ -36,7 +40,7 @@
     font-size: 1.5rem;
     width: 18%;
     border: none;
-    background: blue;
+    background: #51545c;
     color: #fff;
 }
 
@@ -44,6 +48,7 @@
     margin-top: 25px;
     border: 1px solid #ccc;
     padding: 10px;
+    background: white;
 }
 
 .todo {
@@ -54,6 +59,7 @@
     font-size: 1.5rem;
     border-bottom: 1px dotted #ccc;
     font-family: monospace;
+    background: white;
 }
 
 .todo:last-child {
@@ -88,14 +94,20 @@
     text-decoration: none;
     font-size: 1rem;
     padding: 5px;
-    background: red;
+    background: #c91e1e;
     color: #fff;
+    opacity: 0;
+}
+
+.delete:hover {
+    opacity: 1;
 }
 
 .done,
 .undone {
     text-decoration: none;
     color: black;
+    background: white;
 }
 
 .done {
