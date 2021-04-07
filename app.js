@@ -63,6 +63,48 @@ app.post("/add", (req, res) => {
     }
 })
 
+app.get("/:id/delete", (req, res) => {
+    const id = req.params.id
+
+    fs.readFile("./data/words.json", (err, data) => {
+        if (err) throw err
+
+        const words = JSON.parse(data)
+
+        const filteredWords = todos.filter(todo => todo.id != id)
+
+        fs.writeFile("./data/words.json", JSON.stringify(filteredWords), (err) => {
+            if (err) throw err
+            res.render("home", { words: filteredWords, deleted: true })
+        })
+    })
+})
+
+
+app.get("/:id/update", (req, res) => {
+    const id = req.params.id
+
+    fs.readFile("./data/words.json", (err, data) => {
+        if (err) throw err
+
+        const words = JSON.parse(data)
+        const todo = words.filter(todo => todo.id == id)[0]
+
+        const todoIdx = words.indexOf(todo)
+        const splicedTodo = words.splice(todoIdx, 1)[0]
+        
+        splicedTodo.done = true
+
+        words.push(splicedTodo)
+
+        fs.writeFile("./data/words.json", JSON.stringify(words), (err) => {
+            if (err) throw err
+
+            res.render("home", { words: words })
+        })
+    }) 
+})
+
 
 app.listen(PORT, (err) => {
     if (err) throw err

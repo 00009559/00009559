@@ -5,7 +5,11 @@ block number1
      p.error Please fill the input
 
    if success 
-     p.success Good job  
+     p.success Good job 
+
+   if deleted 
+     p.success Deleted
+
    form.form(action="/add" method="POST")
         input.input(type="text" placeholder="Add your todo description here..." name="todo")
         button.btn Add  
@@ -13,6 +17,11 @@ block number1
    div.words  
         if words.length
           each todo in words
-             p.todo #{ todo.description }
+             p.todo 
+               if todo.done
+                 a.done(href=`/${ todo.id}/update`) #{ todo.description }
+               else 
+                 a.undone(href=`/${ todo.id}/update`) #{ todo.description }
+                 a.delete(href=`/${ todo.id }/delete`) Delete
         else 
           p.todo No any todo available      
